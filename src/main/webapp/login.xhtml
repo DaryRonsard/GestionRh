@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Login</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Roboto', 'Arial', sans-serif;
+            background-color: #0b7ad1;
+            background-image: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .login-form {
+            background-color: #ffffff;
+            padding: 40px;
+            width: 350px;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .input-field, .btn-primary {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            transition: border-color 0.3s;
+        }
+
+        .input-field:focus {
+            border-color: #0056b3;
+            outline: none;
+        }
+
+        .btn-primary {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</h:head>
+<h:body>
+    <h:form id="mainForm">
+        <div class="login-form">
+            <h1>Welcome</h1>
+            <p> Please enter your username and password</p>
+
+            <p:messages showDetail="true" showSummary="true">
+                <p:autoUpdate/>
+            </p:messages>
+
+            <p:inputText id="login" placeholder="Username" styleClass="input-field"
+                         value="#{loginContrller.username}" required="true"
+                         requiredMessage="La saisie du Username est obligatoire !"/>
+            <h:message for="login" styleClass="errorBlock" />
+
+            <p:password id="password" placeholder="Password" styleClass="input-field"
+                        value="#{loginContrller.password}" required="true"
+                        validatorMessage="Votre mot de passe doit contenir entre 3 à 12 caractères"
+                        requiredMessage="La saisie du mot de passe est obligatoire !"/>
+            <h:message for="password" styleClass="errorBlock" />
+
+            <p:commandButton value="Se connecter" action="#{loginContrller.login()}"
+                              styleClass="btn-primary" ajax="false" />
+
+        </div>
+    </h:form>
+</h:body>
+</html>
